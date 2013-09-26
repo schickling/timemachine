@@ -18,7 +18,7 @@
   var WindowDate = window.Date,
     Timemachine = {
 
-      dateString: 'December 24, 1990 12:25:00',
+      dateString: 'Wed Dec 25 1991 13:12:59 GMT',
 
       apply: function () {
         var self = this;
@@ -31,6 +31,10 @@
             return new WindowDate(self.dateString);
           }
         };
+        window.Date.now = function() {
+          var date = new WindowDate(self.dateString);
+          return date.getTime();
+        }
       },
 
       config: function (options) {
