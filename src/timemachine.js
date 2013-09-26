@@ -1,10 +1,12 @@
-(function (name, definition){
-  if (typeof define === 'function'){ // AMD
+(function (name, definition) {
+  if (typeof define === 'function') { // AMD
     define(definition);
   } else if (typeof module !== 'undefined' && module.exports) { // Node.js
     module.exports = definition();
   } else { // Browser
-    var timemachine = definition(), global = this, old = global[name];
+    var timemachine = definition(),
+      global = this,
+      old = global[name];
     timemachine.noConflict = function () {
       global[name] = old;
       return timemachine;
@@ -13,7 +15,25 @@
   }
 })('timemachine', function () {
 
-  // return the module's API
-  return {};
+  var WindowDate = window.Date,
+    Timemachine = {
+
+      dateString: 'December 24, 1990 12:25:00',
+
+      apply: function () {
+        window.Date = function () {
+          console.log(params);
+        };
+      },
+
+      config: function (options) {
+        this.dateString = options.dateString || this.dateString;
+      }
+
+    };
+
+  Timemachine.apply();
+
+  return Timemachine;
 
 });
