@@ -21,8 +21,13 @@
       dateString: 'December 24, 1990 12:25:00',
 
       apply: function () {
+        var self = this;
         window.Date = function () {
-          console.log(params);
+          if (arguments.length) {
+
+          } else {
+            return new WindowDate(self.dateString);
+          }
         };
       },
 
