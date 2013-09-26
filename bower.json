@@ -1,0 +1,20 @@
+{
+  "name": "timemachine",
+  "main": "timemachine.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/schickling/timemachine",
+  "authors": [
+    "Johannes Schickling <schickling.j@gmail.com>"
+  ],
+  "description": "Test your time critical app by overriding the native Javascript Date function",
+  "keywords": [
+    "time",
+    "date",
+    "override",
+    "global",
+    "manipulation",
+    "testing",
+    "test"
+  ],
+  "license": "MIT"
+}
