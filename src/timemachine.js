@@ -40,6 +40,10 @@
 
       config: function (options) {
         this.dateString = options.dateString || this.dateString;
+      },
+
+      reset: function() {
+        Date = OriginalDate;
       }
 
     };

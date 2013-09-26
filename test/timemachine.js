@@ -27,5 +27,10 @@ describe("check timemachine", function () {
     expect(Date.now()).toBe(693663179000);
   });
 
+  it("should reset", function() {
+    timemachine.reset();
+    expect(Date.now()).not.toBe(693663179000);
+    expect(new Date().toUTCString()).not.toBe('Wed, 25 Dec 1991 13:12:59 GMT');
+  });
 
 });
