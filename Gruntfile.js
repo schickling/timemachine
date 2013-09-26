@@ -18,7 +18,27 @@ module.exports = function (grunt) {
         singleRun: true
       }
     },
+    uglify: {
+      dist: {
+        src: 'src/timemachine.js',
+        dest: 'timemachine.min.js'
+      },
+    },
+    copy: {
+      dist: {
+        files: [{
+          src: 'src/timemachine.js',
+          dest: 'timemachine.js'
+        }]
+      }
+    },
   });
+
+  grunt.registerTask('build', [
+    'test',
+    'uglify',
+    'copy'
+  ]);
 
   grunt.registerTask('test', [
     'jshint',
