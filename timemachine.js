@@ -15,21 +15,26 @@
   }
 })('timemachine', function () {
 
-  var WindowDate = window.Date,
+  var OriginalDate = Date,
     Timemachine = {
 
-      dateString: 'December 24, 1990 12:25:00',
+      dateString: 'Wed Dec 25 1991 13:12:59 GMT',
 
       apply: function () {
         var self = this;
-        window.Date = function () {
+        Date.prototype = OriginalDate.prototype;
+        Date = function () {
           if (arguments.length === 1) {
-            return new WindowDate(arguments[0]);
+            return new OriginalDate(arguments[0]);
           } else if (arguments.length === 7) {
-            return new WindowDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+            return new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
           } else {
-            return new WindowDate(self.dateString);
+            return new OriginalDate(self.dateString);
           }
+        };
+        Date.now = function () {
+          var date = new OriginalDate(self.dateString);
+          return date.getTime();
         };
       },
 

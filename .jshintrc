@@ -20,6 +20,7 @@
   "loopfunc": true,
   "globals": {
     "timemachine": true,
-    "define": true
+    "define": true,
+    "Date": true
   }
 }
