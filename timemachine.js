@@ -22,7 +22,6 @@
 
       apply: function () {
         var self = this;
-        Date.prototype = OriginalDate.prototype;
         Date = function () {
           if (arguments.length === 1) {
             return new OriginalDate(arguments[0]);
@@ -32,6 +31,7 @@
             return new OriginalDate(self.dateString);
           }
         };
+        Date.prototype = OriginalDate.prototype;
         Date.now = function () {
           var date = new OriginalDate(self.dateString);
           return date.getTime();
@@ -45,6 +45,7 @@
 
       reset: function() {
         Date = OriginalDate;
+        Date.prototype = OriginalDate.prototype;
       }
 
     };
