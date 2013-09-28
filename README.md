@@ -18,4 +18,4 @@ timemachine.config({
 console.log(new Date()); // December 25, 1991 13:12:59
 ```
 
-Also compatible with RequireJS, CommonJS, NodeJS, ...
+This plugin is compatible with global namespaces, RequireJS, CommonJS and NodeJS.
