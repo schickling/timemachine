@@ -24,13 +24,14 @@
 
       config: function (options) {
         this.timestamp = OriginalDate.parse(options.dateString) || options.timestamp || this.timestamp;
+        this.difference = options.difference || this.difference;
         this._apply();
       },
 
       reset: function() {
         this.timestamp = 0;
         this.tick = false;
-        this.differnce = 0;
+        this.difference = 0;
         Date = OriginalDate;
         Date.prototype = OriginalDate.prototype;
       },
@@ -47,12 +48,18 @@
           } else {
             date = new OriginalDate(self.timestamp);
           }
+
+          // add difference
+          if (self.difference != 0) {
+           date = new OriginalDate(date.getTime() + self.difference);
+          }
+
           return date;
         };
 
         Date.prototype = OriginalDate.prototype;
         Date.now = function () {
-          return self.timestamp;
+          return self.timestamp + self.difference;
         };
 
       },
