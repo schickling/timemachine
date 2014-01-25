@@ -18,39 +18,45 @@
   var OriginalDate = Date,
     Timemachine = {
 
-      dateString: 'Wed Dec 25 1991 13:12:59 GMT',
-
-      apply: function () {
-        var self = this;
-        Date = function () {
-          if (arguments.length === 1) {
-            return new OriginalDate(arguments[0]);
-          } else if (arguments.length === 7) {
-            return new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
-          } else {
-            return new OriginalDate(self.dateString);
-          }
-        };
-        Date.prototype = OriginalDate.prototype;
-        Date.now = function () {
-          var date = new OriginalDate(self.dateString);
-          return date.getTime();
-        };
-      },
+      timestamp: 0,
+      tick: false,
+      difference: 0,
 
       config: function (options) {
-        this.dateString = options.dateString || this.dateString;
-        this.apply();
+        this.timestamp = OriginalDate.parse(options.dateString) || this.timestamp;
+        this._apply();
       },
 
       reset: function() {
         Date = OriginalDate;
         Date.prototype = OriginalDate.prototype;
-      }
+      },
+
+      _apply: function () {
+        var self = this;
+
+        Date = function () {
+          var date;
+          if (arguments.length === 1) {
+            date = new OriginalDate(arguments[0]);
+          } else if (arguments.length === 7) {
+            date = new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+          } else {
+            date = new OriginalDate(self.timestamp);
+          }
+          return date;
+        };
+
+        Date.prototype = OriginalDate.prototype;
+        Date.now = function () {
+          return self.timestamp;
+        };
+
+      },
 
     };
 
-  Timemachine.apply();
+  Timemachine._apply();
 
   return Timemachine;
 

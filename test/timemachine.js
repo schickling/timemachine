@@ -1,10 +1,10 @@
-describe("check timemachine", function () {
+describe("check timemachine", function() {
 
-  it("should default to Wed, 25 Dec 1991 13:12:59 GMT", function () {
-    expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 13:12:59 GMT');
+  it("should default to Thu, 01 Jan 1970 00:00:00 GMT", function() {
+    expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:00 GMT');
   });
 
-  it("should now be set to December 25, 1991 13:12:59", function () {
+  it("should now be set to December 25, 1991 13:12:59", function() {
     timemachine.config({
       dateString: 'December 25, 1991 13:12:59'
     });
@@ -28,6 +28,9 @@ describe("check timemachine", function () {
   });
 
   it("should reset", function() {
+    timemachine.config({
+      dateString: 'December 25, 1991 13:12:59'
+    });
     timemachine.reset();
     expect(Date.now()).not.toBe(693663179000);
     expect(new Date().toUTCString()).not.toBe('Wed, 25 Dec 1991 13:12:59 GMT');
