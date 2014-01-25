@@ -94,6 +94,15 @@ describe('check timemachine', function() {
       expect(Date.now()).toBe(0);
     });
 
+    it('should tick when enabled', function() {
+      timemachine.config({
+        tick: true
+      });
+      expect(Date.now()).toBe(0);
+      sleep(1000);
+      expect(Date.now()).toBe(1000);
+    });
+
   });
 
 });

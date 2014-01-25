@@ -46,9 +46,7 @@
         var self = this;
 
         Date = function() {
-          var date,
-            difference = self.difference;
-
+          var date;
           if (arguments.length === 1) {
             date = new OriginalDate(arguments[0]);
           } else if (arguments.length === 7) {
@@ -57,12 +55,7 @@
             date = new OriginalDate(self.timestamp);
           }
 
-          // tick tack
-          if (self.tick) {
-            difference += OriginalDate.now() - self.tickStartDate.getTime();
-          }
-
-          // add difference
+          var difference = self._getDifference();
           if (difference !== 0) {
             date = new OriginalDate(date.getTime() + difference);
           }
@@ -72,10 +65,20 @@
 
         Date.prototype = OriginalDate.prototype;
         Date.now = function() {
-          return self.timestamp + self.difference;
+          return self.timestamp + self._getDifference();
         };
         Date.OriginalDate = OriginalDate;
 
+      },
+
+      _getDifference: function() {
+        var difference = this.difference;
+
+        if (this.tick) {
+          difference += OriginalDate.now() - this.tickStartDate.getTime();
+        }
+
+        return difference;
       },
 
     };
