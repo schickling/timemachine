@@ -1,4 +1,4 @@
-(function (name, definition) {
+(function(name, definition) {
   if (typeof define === 'function') { // AMD
     define(definition);
   } else if (typeof module !== 'undefined' && module.exports) { // Node.js
@@ -7,13 +7,13 @@
     var timemachine = definition(),
       global = this,
       old = global[name];
-    timemachine.noConflict = function () {
+    timemachine.noConflict = function() {
       global[name] = old;
       return timemachine;
     };
     global[name] = timemachine;
   }
-})('timemachine', function () {
+})('timemachine', function() {
 
   var OriginalDate = Date,
     Timemachine = {
@@ -22,7 +22,7 @@
       tick: false,
       difference: 0,
 
-      config: function (options) {
+      config: function(options) {
         this.timestamp = OriginalDate.parse(options.dateString) || options.timestamp || this.timestamp;
         this.difference = options.difference || this.difference;
         this._apply();
@@ -36,10 +36,10 @@
         Date.prototype = OriginalDate.prototype;
       },
 
-      _apply: function () {
+      _apply: function() {
         var self = this;
 
-        Date = function () {
+        Date = function() {
           var date;
           if (arguments.length === 1) {
             date = new OriginalDate(arguments[0]);
@@ -50,15 +50,15 @@
           }
 
           // add difference
-          if (self.difference != 0) {
-           date = new OriginalDate(date.getTime() + self.difference);
+          if (self.difference !== 0) {
+            date = new OriginalDate(date.getTime() + self.difference);
           }
 
           return date;
         };
 
         Date.prototype = OriginalDate.prototype;
-        Date.now = function () {
+        Date.now = function() {
           return self.timestamp + self.difference;
         };
 
