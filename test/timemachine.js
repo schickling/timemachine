@@ -1,12 +1,24 @@
 describe("check timemachine", function() {
 
+  afterEach(function() {
+    timemachine.reset();
+    timemachine.config({});
+  });
+
   it("should default to Thu, 01 Jan 1970 00:00:00 GMT", function() {
     expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:00 GMT');
   });
 
-  it("should now be set to December 25, 1991 13:12:59", function() {
+  it("should now be set to December 25, 1991 13:12:59 via dateString", function() {
     timemachine.config({
       dateString: 'December 25, 1991 13:12:59'
+    });
+    expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 12:12:59 GMT');
+  });
+
+  it("should now be set to December 25, 1991 13:12:59 via timestamp", function() {
+    timemachine.config({
+      timestamp: 693663179000
     });
     expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 12:12:59 GMT');
   });
@@ -24,7 +36,7 @@ describe("check timemachine", function() {
   });
 
   it("should return adjusted timestamp", function() {
-    expect(Date.now()).toBe(693663179000);
+    expect(Date.now()).toBe(0);
   });
 
   it("should reset", function() {

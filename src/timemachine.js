@@ -23,11 +23,14 @@
       difference: 0,
 
       config: function (options) {
-        this.timestamp = OriginalDate.parse(options.dateString) || this.timestamp;
+        this.timestamp = OriginalDate.parse(options.dateString) || options.timestamp || this.timestamp;
         this._apply();
       },
 
       reset: function() {
+        this.timestamp = 0;
+        this.tick = false;
+        this.differnce = 0;
         Date = OriginalDate;
         Date.prototype = OriginalDate.prototype;
       },
