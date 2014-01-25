@@ -4,8 +4,15 @@ timemachine [![Build Status](https://travis-ci.org/schickling/timemachine.png?br
 Test your time critical app by overriding the native Javascript Date function. Timemachine is compatible with global namespaces, RequireJS, CommonJS and NodeJS.
 
 ## Installation
+
+### Bower
 ```sh
-$ bower install timemachine --save-dev
+$ bower install timemachine
+```
+
+### NPM
+```sh
+$ npm install timemachine
 ```
 
 ## Usage
