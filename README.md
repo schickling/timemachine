@@ -27,8 +27,9 @@ console.log(new Date()); // December 25, 1991 13:12:59
 
 ### Config parameters
 
-Parameter 		| Description						| Example
----				| ---								| ---
-`dateString`	| Date you want set as a string		| `December 25, 1991 13:12:59`
-`timestamp`		| Date you want set as a timestamp	| `693663179000`
-`difference`	| Time offset in milliseconds		| `10000`
+Parameter 		| Description								| Example						| Default
+---				| ---										| ---							| ---
+`dateString`	| Date you want set as a string				| `December 25, 1991 13:12:59`	| -
+`timestamp`		| Date you want set as a timestamp			| `693663179000`				| `0`
+`difference`	| Time offset in milliseconds				| `10000`						| `0`
+`tick`			| Whether clock should continue ticking	 	| `true`						| `false`
