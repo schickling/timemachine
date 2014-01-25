@@ -48,19 +48,24 @@ describe('check timemachine', function() {
 
     it('should add a time difference as milliseconds', function() {
       timemachine.config({
-        dateString: 'December 25, 1991 13:12:59',
         difference: 10000 // 10 seconds
       });
-      expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 12:13:09 GMT');
+      expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:10 GMT');
     });
 
     it('should not tick by default', function() {
-      timemachine.config({
-        dateString: 'December 25, 1991 13:12:59'
-      });
-      expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 12:12:59 GMT');
+      expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:00 GMT');
       jasmine.Clock.tick(1000);
-      expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 12:12:59 GMT');
+      expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:00 GMT');
+    });
+
+    it('should tick when enabled', function() {
+      timemachine.config({
+        tick: true
+      });
+      expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:00 GMT');
+      sleep(1000);
+      expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:01 GMT');
     });
 
   });
@@ -85,10 +90,17 @@ describe('check timemachine', function() {
 
     it('should not tick by default', function() {
       expect(Date.now()).toBe(0);
-      jasmine.Clock.tick(1000);
+      sleep(1000);
       expect(Date.now()).toBe(0);
     });
 
   });
 
 });
+
+function sleep(ms) {
+  var start = new Date.OriginalDate().getTime(),
+    expire = start + ms;
+  while (new Date.OriginalDate().getTime() < expire) {}
+  return;
+}
