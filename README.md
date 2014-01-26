@@ -1,7 +1,7 @@
 timemachine [![Build Status](https://travis-ci.org/schickling/timemachine.png?branch=master)](https://travis-ci.org/schickling/timemachine)
 ===========
 
-Test your time critical app by monkey patching the `Date` function and **overriding your system time**. Timemachine is compatible with global namespaces, RequireJS, CommonJS and NodeJS.
+Test your time-dependent app by monkey patching the `Date` function and **overriding your system time**. Timemachine is compatible with global namespaces, RequireJS, CommonJS and NodeJS.
 
 ## Installation
 
