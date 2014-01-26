@@ -26,8 +26,6 @@ timemachine.config({
 console.log(new Date()); // December 25, 1991 13:12:59
 ```
 
-##### Parameters
-
 Parameter 		| Description										| Example						| Default
 ---				| ---												| ---							| ---
 `dateString`	| Date you want set as a string						| `December 25, 1991 13:12:59`	| `Thu, 01 Jan 1970 00:00:00 GMT`
