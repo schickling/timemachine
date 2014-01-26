@@ -1,4 +1,4 @@
-timemachine [![Build Status](https://travis-ci.org/schickling/timemachine.png?branch=master)](https://travis-ci.org/schickling/timemachine)
+timemachine [![Build Status](https://travis-ci.org/schickling/timemachine.png?branch=master)](https://travis-ci.org/schickling/timemachine) [![Coverage Status](https://coveralls.io/repos/schickling/timemachine/badge.png)](https://coveralls.io/r/schickling/timemachine)
 ===========
 
 Test your time-dependent app by monkey patching the `Date` function and **overriding your system time**. Timemachine is compatible with global namespaces, RequireJS, CommonJS and NodeJS.
