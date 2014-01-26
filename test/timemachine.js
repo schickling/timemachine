@@ -68,6 +68,14 @@ describe('check timemachine', function() {
       expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:01 GMT');
     });
 
+    it('should keep system time', function() {
+      timemachine.config({
+        keepTime: true
+      });
+      var now = new Date.OriginalDate().toUTCString();
+      expect(new Date().toUTCString()).toBe(now);
+    });
+
   });
 
   describe('check Date.now()', function() {
@@ -77,8 +85,9 @@ describe('check timemachine', function() {
     });
 
     it('should reset', function() {
+      var now = Date.OriginalDate.now();
       timemachine.reset();
-      expect(Date.now()).not.toBe(0);
+      expect(Date.now()).toBe(now);
     });
 
     it('should add a time difference as milliseconds', function() {
@@ -101,6 +110,14 @@ describe('check timemachine', function() {
       expect(Date.now()).toBe(0);
       sleep(1000);
       expect(Date.now()).toBe(1000);
+    });
+
+    it('should keep system time', function() {
+      timemachine.config({
+        keepTime: true
+      });
+      var now = Date.OriginalDate.now();
+      expect(Date.now()).toBe(now);
     });
 
   });

@@ -21,11 +21,13 @@
       timestamp: 0,
       tick: false,
       tickStartDate: null,
+      keepTime: false,
       difference: 0,
 
       config: function(options) {
         this.timestamp = OriginalDate.parse(options.dateString) || options.timestamp || this.timestamp;
         this.difference = options.difference || this.difference;
+        this.keepTime = options.keepTime || this.keepTime;
         this.tick = options.tick || this.tick;
         if (this.tick) {
           this.tickStartDate = new OriginalDate();
@@ -37,6 +39,7 @@
         this.timestamp = 0;
         this.tick = false;
         this.tickStartDate = null;
+        this.keepTime = false;
         this.difference = 0;
         Date = OriginalDate;
         Date.prototype = OriginalDate.prototype;
@@ -47,7 +50,9 @@
 
         Date = function() {
           var date;
-          if (arguments.length === 1) {
+          if (self.keepTime) {
+            date = new OriginalDate();
+          } else if (arguments.length === 1) {
             date = new OriginalDate(arguments[0]);
           } else if (arguments.length === 7) {
             date = new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
@@ -65,7 +70,8 @@
 
         Date.prototype = OriginalDate.prototype;
         Date.now = function() {
-          return self.timestamp + self._getDifference();
+          var timestamp = self.keepTime ? OriginalDate.now() : self.timestamp;
+          return timestamp + self._getDifference();
         };
         Date.OriginalDate = OriginalDate;
 

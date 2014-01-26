@@ -32,6 +32,7 @@ Parameter 		| Description										| Default
 `timestamp`		| Date you want set as a timestamp					| `0`
 `difference`	| Time offset in milliseconds						| `0`
 `tick`			| Whether the system clock should continue ticking	| `false`
+`keepTime`		| Whether the system time should be kept			| `false`
 
 ### Reset
 ```js
