@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
@@ -32,6 +32,13 @@ module.exports = function (grunt) {
         }]
       }
     },
+    bump: {
+      options: {
+        files: ['package.json', 'bower.json'],
+        commitFiles: ['package.json', 'bower.json'],
+        tagName: '%VERSION%',
+      },
+    }
   });
 
   grunt.registerTask('build', [
