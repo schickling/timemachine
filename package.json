@@ -1,13 +1,13 @@
 {
   "name": "timemachine",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Test your time critical app by overriding the native Javascript Date function",
   "main": "timemachine.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test --verbose"
   },
   "repository": {
     "type": "git",
@@ -44,9 +44,7 @@
     "karma": "~0.10.2",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.4"
-  },
-  "scripts": {
-    "test": "grunt test --verbose"
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-bump": "0.0.13"
   }
 }
