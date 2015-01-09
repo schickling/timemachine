@@ -1,6 +1,6 @@
 {
   "name": "timemachine",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Test your time critical app by overriding the native Javascript Date function",
   "main": "timemachine.js",
   "directories": {
