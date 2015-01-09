@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "grunt test --verbose",
-    "build": "grunt build"
+    "build": "grunt build",
+    "bump": "grunt bump"
   },
   "repository": {
     "type": "git",
