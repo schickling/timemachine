@@ -74,7 +74,7 @@
           return timestamp + self._getDifference();
         };
         Date.OriginalDate = OriginalDate;
-
+        Date.UTC = OriginalDate.UTC;
       },
 
       _getDifference: function() {
