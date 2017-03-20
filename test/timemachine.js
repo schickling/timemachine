@@ -18,12 +18,12 @@ describe('check timemachine', function() {
 
         it('should now be set to December 25, 1991 13:12:59 via dateString', function() {
             timemachine.config({
-                dateString: 'December 25, 1991 13:12:59'
+                dateString: 'Wed, 25 Dec 1991 13:12:59 GMT'
             });
-            expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 12:12:59 GMT');
+            expect(new Date().toUTCString()).toBe('Wed, 25 Dec 1991 13:12:59 GMT');
         });
 
-        it('should now be set to December 25, 1991 13:12:59 via timestamp', function() {
+        it('should now be set to December 25, 1991 12:12:59 via timestamp', function() {
             timemachine.config({
                 timestamp: 693663179000
             });
@@ -35,11 +35,15 @@ describe('check timemachine', function() {
         });
 
         it('should stay the same for instantiation with dateString', function() {
-            expect(new Date('December 25, 1991 13:12:59').toUTCString()).toBe('Wed, 25 Dec 1991 12:12:59 GMT');
+            expect(new Date('Wed, 25 Dec 1991 12:12:59 GMT').toUTCString()).toEqual('Wed, 25 Dec 1991 12:12:59 GMT');
+        });
+
+        it ('should stay the same for instantiation with year, month, day', function() {
+            expect(new Date(1990, 12, 25).toUTCString()).toEqual('Fri, 25 Jan 1991 06:00:00 GMT');
         });
 
         it('should stay the same for instantiation with year, month, day, hours, minutes, seconds, milliseconds', function() {
-            expect(new Date(1990, 12, 25, 12, 12, 59, 1).toUTCString()).toBe('Fri, 25 Jan 1991 11:12:59 GMT');
+            expect(new Date(1990, 12, 25, 6, 12, 59, 1).toUTCString()).toEqual('Fri, 25 Jan 1991 12:12:59 GMT');
         });
 
         it('should reset', function() {
@@ -67,6 +71,15 @@ describe('check timemachine', function() {
             expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:00 GMT');
             sleep(1000);
             expect(new Date().toUTCString()).toBe('Thu, 01 Jan 1970 00:00:01 GMT');
+        });
+
+        it ('should set date when tick is enabled', function () {
+            timemachine.config({
+                dateString: 'Thu, 01 Jan 1970 00:00:00 GMT',
+                tick: true
+            });
+            sleep(1000);
+            expect(new Date('Wed, 25 Dec 1991 12:12:59 GMT').toUTCString()).toEqual('Wed, 25 Dec 1991 12:12:59 GMT');
         });
 
         it('should keep system time', function() {
@@ -120,9 +133,7 @@ describe('check timemachine', function() {
             var now = Date.OriginalDate.now();
             expect(Date.now()).toBe(now);
         });
-
     });
-
 });
 
 function sleep(ms) {

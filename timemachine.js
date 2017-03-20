@@ -60,9 +60,11 @@
             date = new OriginalDate(self.timestamp);
           }
 
-          var difference = self._getDifference();
-          if (difference !== 0) {
-            date = new OriginalDate(date.getTime() + difference);
+          if (arguments.length === 0) {
+              var difference = self._getDifference();
+              if (difference !== 0) {
+                  date = new OriginalDate(date.getTime() + difference);
+              }
           }
 
           return date;
