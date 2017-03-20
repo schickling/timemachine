@@ -39,11 +39,11 @@ describe('check timemachine', function() {
         });
 
         it ('should stay the same for instantiation with year, month, day', function() {
-            expect(new Date(1990, 12, 25).toUTCString()).toEqual('Fri, 25 Jan 1991 06:00:00 GMT');
+            expect(new Date(1990, 12, 25).toUTCString()).toEqual(new Date.OriginalDate(1990, 12, 25).toUTCString());
         });
 
         it('should stay the same for instantiation with year, month, day, hours, minutes, seconds, milliseconds', function() {
-            expect(new Date(1990, 12, 25, 6, 12, 59, 1).toUTCString()).toEqual('Fri, 25 Jan 1991 12:12:59 GMT');
+            expect(new Date(1990, 12, 25, 6, 12, 59, 1).toUTCString()).toEqual(new Date.OriginalDate(1990, 12, 25, 6, 12, 59, 1).toUTCString());
         });
 
         it('should reset', function() {
