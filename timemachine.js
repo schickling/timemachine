@@ -52,8 +52,18 @@
           var date;
           if (self.keepTime) {
             date = new OriginalDate();
-          } else if (arguments.length === 1) {
+          } else if (arguments.length === 1) {  //Cannot use OriginalDate.apply(this, arguments).  See http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
             date = new OriginalDate(arguments[0]);
+          } else if (arguments.length === 2) {
+            date = new OriginalDate(arguments[0], arguments[1]);
+          } else if (arguments.length === 3) {
+            date = new OriginalDate(arguments[0], arguments[1], arguments[2]);
+          } else if (arguments.length === 4) {
+            date = new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3]);
+          } else if (arguments.length === 5) {
+            date = new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
+          } else if (arguments.length === 6) {
+            date = new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
           } else if (arguments.length === 7) {
             date = new OriginalDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
           } else {
