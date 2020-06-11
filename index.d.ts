@@ -1,4 +1,4 @@
-const instance: {
+export const instance: {
     config: (options: {
         dateString?: string
         timestamp?: number
